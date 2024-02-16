@@ -1,0 +1,52 @@
+{% extends "admin/admin_base.html" %}
+
+{% block content %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2">Dashboard</h1>
+    </div>
+    <!--displaying all the Workers-->
+    {% if workers %}
+    <div class="row">
+      <div class="col-md-12">
+          <div class="card">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-striped table-sm">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Supervisor</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for worker in workers %}
+                      <tr>
+                        <td>{{ worker.user.first_name}} {{ worker.user.last_name}}</td>
+                        <td>{{ worker.user.username}}</td>
+                        <td>{{ worker.user.email}}</td>
+                        <td>{{ worker.supervisor_email}}</td>
+                        <td>
+                            <a href="{% url 'admin_view_worker' worker.worker_uuid %}" class="btn btn-primary btn-sm">View</a>&nbsp;
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
+   
+    {% else %}
+    <p>No Workers found</p>
+    {% endif %}
+  
+
+  </main>
+  {% endblock content %}
+  
