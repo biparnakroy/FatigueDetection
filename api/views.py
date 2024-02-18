@@ -122,6 +122,7 @@ def Signgup(request):
     user.worker.supervisor_email=supervisor_email
     user.worker.device_token = device_token
     #user.worker.jwt = str(uuid.uuid4())
+    user.last_login = datetime.now()
     user.save()
     jwt_token = RefreshToken.for_user(user)
     actual_data={
