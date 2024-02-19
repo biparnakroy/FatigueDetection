@@ -1,3 +1,5 @@
+
+
 '''
 Django settings for Fatigue_Detection project.
 
@@ -27,7 +29,7 @@ SECRET_KEY = 'django-insecure-8d10l)qzw=1$v2qp2m1kh^b^1bte!_5&9etip7l-yn(0wdn@5j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['13.51.184.242']
 
 
 # Application definition
@@ -94,9 +96,9 @@ DATABASES = {
     # }
      'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'FatigueDetection',
+        'NAME': 'fatiguedetection',
         'USER': 'postgres',
-        'PASSWORD': 'Killercat123',
+        'PASSWORD': 'postgres',
         'HOST': 'localhost',
         'PORT': '5432',
     }
