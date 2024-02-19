@@ -67,11 +67,12 @@ class View_worker(APIView):
                 worker.last_fatigue_state = worker_custom_user.last_login
                 worker.save()
                 
-            diff=datetime.now()-worker_custom_user.last_fatigue_state
+            diff=datetime.now()-worker.last_fatigue_state
             
-            if diff.total_seconds()/60 > 15.0 : 
+            if diff.total_seconds()/60 > 15.0 and diff.total_seconds()/60 < float(24*60) : 
                 fatigue_state= Fatigue_State.objects.create(fatigue_state_worker=worker,fatigue_state=current_fatigue)
                 worker.last_fatigue_state=datetime.now()
+                worker.save()
 
 
             fatigue_states = Fatigue_State.objects.filter(fatigue_state_worker=worker)
