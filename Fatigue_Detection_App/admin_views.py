@@ -25,6 +25,8 @@ import requests
 # settings 
 from django.conf import settings
 
+from pytz import timezone as tz
+
 import random
 
 # Admin Home Dashboard
@@ -60,14 +62,14 @@ class View_worker(APIView):
         
             print(type(worker_custom_user.last_login))
 
-            print(datetime.now()-worker_custom_user.last_login)
-            
+            print(datetime.now().replace(tzinfo=tz('Asia/Kolkata'))-worker_custom_user.last_login)
+            #dateA = dateA.replace(tzinfo=tz('UTC'))
 
             if worker.last_fatigue_state == None:
                 worker.last_fatigue_state = worker_custom_user.last_login
                 worker.save()
                 
-            diff=datetime.now()-worker.last_fatigue_state
+            diff=datetime.now().replace(tzinfo=tz('Asia/Kolkata'))-worker.last_fatigue_state
             
             if diff.total_seconds()/60 > 15.0 and diff.total_seconds()/60 < float(24*60) : 
                 fatigue_state= Fatigue_State.objects.create(fatigue_state_worker=worker,fatigue_state=current_fatigue)
