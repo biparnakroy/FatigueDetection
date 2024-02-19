@@ -73,7 +73,7 @@ class View_worker(APIView):
             
             if diff.total_seconds()/60 > 15.0 and diff.total_seconds()/60 < float(24*60) : 
                 fatigue_state= Fatigue_State.objects.create(fatigue_state_worker=worker,fatigue_state=current_fatigue)
-                worker.last_fatigue_state=datetime.now()
+                worker.last_fatigue_state=datetime.now().replace(tzinfo=tz('Asia/Kolkata'))
                 worker.save()
 
 
