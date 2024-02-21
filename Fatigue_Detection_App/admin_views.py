@@ -79,13 +79,13 @@ class View_worker(APIView):
                 worker.last_fatigue_state=datetime.now().replace(tzinfo=tz('Asia/Kolkata'))
                 worker.save()
 
-            # sending mail to admin
-            if current_fatigue == "Medium Fatigue" or current_fatigue == "High Fatigue"
-                subject = f'{current_fatigue} Detected for {worker_custom_user.first_name} {worker_custom_user.last_name}'
-                message = f'Dear Admin, {current_fatigue} Detected for {worker_custom_user.first_name} {worker_custom_user.last_name} at {worker.last_fatigue_state}.'
-                email_from = settings.EMAIL_HOST_USER
-                recipient_list = ["	parijatgd@gmail.com","roybiparnak@gmail.com" ]
-                send_mail( subject, message, email_from, recipient_list )
+                # sending mail to admin
+                if current_fatigue == "Medium Fatigue" or current_fatigue == "High Fatigue":
+                    subject = f'{current_fatigue} Detected for {worker_custom_user.first_name} {worker_custom_user.last_name}'
+                    message = f'Dear Admin, {current_fatigue} Detected for {worker_custom_user.first_name} {worker_custom_user.last_name} at {worker.last_fatigue_state.replace(tzinfo=tz("Asia/Kolkata"))}.'
+                    email_from = settings.EMAIL_HOST_USER
+                    recipient_list = ["	parijatgd@gmail.com","roybiparnak@gmail.com" ]
+                    send_mail( subject, message, email_from, recipient_list )
 
             fatigue_states = Fatigue_State.objects.filter(fatigue_state_worker=worker)
             context = {
