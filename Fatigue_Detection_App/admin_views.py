@@ -29,6 +29,9 @@ from pytz import timezone as tz
 
 import random
 
+#email
+from django.core.mail import send_mail
+
 # Admin Home Dashboard
 class Admin_home(APIView):
 
@@ -71,11 +74,18 @@ class View_worker(APIView):
                 
             diff=datetime.now().replace(tzinfo=tz('Asia/Kolkata'))-worker.last_fatigue_state
             
-            if diff.total_seconds()/60 > 15.0 and diff.total_seconds()/60 < float(24*60) : 
+            if diff.total_seconds()/60 > 15.0: 
                 fatigue_state= Fatigue_State.objects.create(fatigue_state_worker=worker,fatigue_state=current_fatigue)
                 worker.last_fatigue_state=datetime.now().replace(tzinfo=tz('Asia/Kolkata'))
                 worker.save()
 
+            # sending mail to admin
+            if current_fatigue == "Medium Fatigue" or current_fatigue == "High Fatigue"
+                subject = f'{current_fatigue} Detected for {worker_custom_user.first_name} {worker_custom_user.last_name}'
+                message = f'Dear Admin, {current_fatigue} Detected for {worker_custom_user.first_name} {worker_custom_user.last_name} at {worker.last_fatigue_state}.'
+                email_from = settings.EMAIL_HOST_USER
+                recipient_list = ["	parijatgd@gmail.com","roybiparnak@gmail.com" ]
+                send_mail( subject, message, email_from, recipient_list )
 
             fatigue_states = Fatigue_State.objects.filter(fatigue_state_worker=worker)
             context = {

@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-8d10l)qzw=1$v2qp2m1kh^b^1bte!_5&9etip7l-yn(0wdn@5j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['13.51.184.242']
+ALLOWED_HOSTS = ['localhost','127.0.0.1','13.51.184.242']
 
 
 # Application definition
@@ -157,3 +157,11 @@ AUTH_USER_MODEL = "Fatigue_Detection_App.CustomUser"
 
 # Registering Custom Backend "EmailBackEnd"
 AUTHENTICATION_BACKENDS = ['Fatigue_Detection_App.EmailBackEnd.EmailBackEnd']
+
+
+# email configs
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "fatiguedetector1@gmail.com"
+EMAIL_HOST_PASSWORD = "yuww vpok sqfr xpng "
