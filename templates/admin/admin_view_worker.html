@@ -11,22 +11,24 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                  <div class="col-3">
-                    <img src="{{worker.worker.profile_pic}}" style="height:250px; width:250px;border-radius:5px;" alt="{{prof.first_name}} {{prof.last_name}}" class="img-fluid">
+                  <div class="col-md-2" style="margin-bottom:10px;">
+                    <img src="{{worker.worker.profile_pic}}" style="height:150px; width:150px;border-radius:5px;" alt="{{prof.first_name}} {{prof.last_name}}" class="img-fluid">
                   </div>
-                  <div class="col">
+                  <div class="col" style="margin-bottom:10px;">
                     <ul class="list-group">
                       <li class="list-group-item" style="padding:15px;">Name :</li>
                       <li class="list-group-item" style="padding:15px;">Email :</li>
                       <li class="list-group-item" style="padding:15px;">Username :</li>
-                      <li class="list-group-item" style="padding:15px;">Worker UID :</li>
+                      <li class="list-group-item" style="padding:15px;">Supervisor :</li>
+                      <li class="list-group-item" style="padding:15px;">Worker's UID :</li>
                   </ul>
                   </div>
-                  <div class="col">
+                  <div class="col" style="margin-bottom:10px;">
                     <ul class="list-group">
                       <li class="list-group-item"  style="padding:15px;">{{worker.first_name}} {{worker.last_name}}</li>
                       <li class="list-group-item"  style="padding:15px;">{{worker.email}}</li>
                       <li class="list-group-item"  style="padding:15px;">{{worker.username}}</li>
+                      <li class="list-group-item"  style="padding:15px;">{{worker.worker.supervisor_email}}</li>
                       <li class="list-group-item"  style="padding:15px;">{{worker.worker.worker_uuid}}</li>
                   </ul>
                   </div>
@@ -36,9 +38,9 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row"style="margin-top: 20px;">
     <div class="col-md-12">
-        <div class="card">
+        <div class="card" style="max-height: 40vh; overflow-y: scroll;">
             <div class="card-body">
                 <div class="row">
                     <div class="table-responsive">
