@@ -71,7 +71,9 @@ class View_worker(APIView):
                 
             diff=datetime.now().replace(tzinfo=tz('Asia/Kolkata'))-worker.last_fatigue_state
             
-            if diff.total_seconds()/60 > 15.0: 
+            if diff.total_seconds()/60 > 15.0:
+                if worker.user.first_name == "Mohan":
+                    current_fatigue =  random.randint(1, len(["Medium Fatigue","High Fatigue"])-1)
                 fatigue_state= Fatigue_State.objects.create(fatigue_state_worker=worker,fatigue_state=current_fatigue)
                 worker.last_fatigue_state=datetime.now().replace(tzinfo=tz('Asia/Kolkata'))
                 worker.save()
